@@ -4,6 +4,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Product } from '../../interfaces/product';
 import { Collection } from '../../interfaces/collection';
+import { CollectionListing } from 'src/app/interfaces/collection_listing';
+import { ProductListing } from 'src/app/interfaces/product_listing';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +14,19 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+
+
   // get all collection details
-  getCollections(): Observable<Collection[]> {
-    return this.http.get<any>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/collection_listings.json`)
+  getCollections(): Observable<CollectionListing> {
+    return this.http.get<CollectionListing>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/collection_listings.json`)
       .pipe(
         catchError(this.handleError)
       )
   }
 
   // get collection products by collection id
-  getProductsFromCollection(coll_id: number): Observable<Product[]> {
-    return this.http.get<any>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/collections/${coll_id}/products.json`)
+  getProductsFromCollection(coll_id: number): Observable<ProductListing> {
+    return this.http.get<ProductListing>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/collections/${coll_id}/products.json`)
       .pipe(
         catchError(this.handleError)
       )
