@@ -25,7 +25,7 @@ export class ProductService {
   }
 
   // get collection products by collection id
-  getProductsFromCollection(coll_id: number): Observable<ProductListing> {
+  getProductsFromCollection(coll_id: number|undefined): Observable<ProductListing> {
     return this.http.get<ProductListing>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/collections/${coll_id}/products.json`)
       .pipe(
         catchError(this.handleError)

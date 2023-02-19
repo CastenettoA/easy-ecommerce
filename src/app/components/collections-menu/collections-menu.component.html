@@ -1,0 +1,6 @@
+<div class="collections" *ngIf="collections">
+  <div class="collection-item" *ngFor="let col of collections" (click)="updateCollection(col.collection_id)"
+    [style.background-image]="'url('+ col.default_product_image.src +')'">
+    <p class="title">{{col.title}}</p>
+  </div>
+</div>

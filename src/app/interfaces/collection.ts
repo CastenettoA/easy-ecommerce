@@ -7,6 +7,7 @@ export interface Collection {
       position: number;
       updated_at: string;
       product_id: number;
+      src: string;
     };
     handle: string;
     image: any;

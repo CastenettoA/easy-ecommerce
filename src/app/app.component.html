@@ -1,33 +1,9 @@
-<h1>Easycommerce</h1>
-<p>Un ecommerce semplice, comodo e bello.</p>
+<main>
+  <header>
+    <h1>Easycommerce</h1>
+    <p>Un ecommerce semplice, comodo e bello.</p>
+  </header>
 
-<ng-container *ngIf="collections">
-    <mat-button-toggle-group [(ngModel)]="collection_id" *ngFor="let col of collections">
-        <mat-button-toggle value="{{col.collection_id}}" (click)="loadProduct()">{{col.title}}</mat-button-toggle>
-    </mat-button-toggle-group> 
-</ng-container>
-
-<br>
-<hr>
-
-<div *ngIf="products"  class="products">
-    <ng-container *ngFor="let product of products">
-        <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title>{{product.title}}</mat-card-title>
-            </mat-card-header>
-
-            <img mat-card-image :src="{{product.image.src}}" :alt="{{product.title}}">
-            <mat-card-content>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus magni tempora saepe incidunt blanditiis provident, nobis voluptatem consequuntur! Nobis sint recusandae ea ut ducimus ab voluptatem aut placeat odit aliquam?</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button>LIKE</button>
-              <button mat-button>SHARE</button>
-            </mat-card-actions>
-          </mat-card> 
-    </ng-container>
-</div>
-
-<router-outlet></router-outlet>
+  <app-collections-menu></app-collections-menu>
+  <router-outlet></router-outlet>
+</main>

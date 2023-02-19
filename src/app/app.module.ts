@@ -10,10 +10,18 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { CollectionsMenuComponent } from './components/collections-menu/collections-menu.component';
+import { CollectionComponent } from './components/collection/collection.component';
+import { Page404Component } from './components/page404/page404.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CollectionsMenuComponent,
+    CollectionComponent,
+    Page404Component,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
