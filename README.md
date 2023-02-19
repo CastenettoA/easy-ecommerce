@@ -1,7 +1,7 @@
-# FlowerEcommerce
-Un ecommerce di fiori sviluppato in Angular con Angular Material e tailwind.
+# Easy Commerce
+Un ecommerce semplice da usare, creato in Angular con Angular Material.
 
-Link sito live: www.flower-commerce.netlify.app
+Link sito live: ???
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
