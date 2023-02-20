@@ -33,7 +33,7 @@ export class ProductService {
   }
 
   // get product details from product id
-  getProductDetails(prod_id: number): Observable<Product> {
+  getProductDetails(prod_id: number|undefined): Observable<Product> {
     return this.http.get<Product>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/products/${prod_id}.json`)
       .pipe(
         catchError(this.handleError)

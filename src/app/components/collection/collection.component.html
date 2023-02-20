@@ -1,5 +1,4 @@
-<p>collection works!</p>
-<h2>Stai visualizzando i prodotti per {{colName}}</h2>
+<h2 *ngIf="products">Stai visualizzando i prodotti per {{colName}}</h2>
 
  <div *ngIf="products" class="products">
     <div class="product" *ngFor="let product of products" (click)="goToProduct(product.id)">

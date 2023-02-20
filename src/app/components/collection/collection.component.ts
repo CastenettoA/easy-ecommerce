@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./collection.component.scss']
 })
 export class CollectionComponent {
-  colName = 'Giardino'
+  colName = 'Nome-Collezione'
   collection_id?: number;
   products?: Product[];
 
@@ -32,7 +32,7 @@ export class CollectionComponent {
     })
   }
 
-  // redirect angular router to product page
+  // redirect to product page
   goToProduct(product_id:number) {
     this.router.navigate(['/collection', this.collection_id, product_id]);
   }
