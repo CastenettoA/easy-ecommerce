@@ -12,7 +12,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class CollectionComponent {
   colName = 'Nome-Collezione'
   collection_id?: number;
-  products?: Product[];
+  products?: any[];
 
   constructor(private productServices: ProductService,
     private route: ActivatedRoute,

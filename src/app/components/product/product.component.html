@@ -1,7 +1,15 @@
-<ng-container *ngIf="product">
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    {{ product | json }}
-</ng-container>
+<mat-card class="example-card" *ngIf="product">
+    <mat-card-header>
+      <mat-card-title>{{product.title}}</mat-card-title>
+      <mat-card-subtitle [innerHTML]="product.body_html"></mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image :src="{{product.image.src}}" :alt="{{product.image.alt}}">
+    <mat-card-content>
+      <p>vendor: {{product.vendor}}</p>
+      <p>product_type: {{product.product_type}}</p>
+      <p>status: {{product.status}}</p>
+      <p>images: {{product.images.length}}</p>
+      <!-- <p>tags: <span *ngFor="let tag of product.tags">{{tag}} </span></p> -->
+      <p>tags: {{product.tags}}</p>
+    </mat-card-content>
+</mat-card>

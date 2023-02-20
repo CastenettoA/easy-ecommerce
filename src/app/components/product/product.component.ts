@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class ProductComponent {
   collection_id?: number;
   product_id?: number;
-  product?: Product;
+  product?: any;
 
 
   constructor(private productServices: ProductService,
@@ -21,8 +21,7 @@ export class ProductComponent {
         this.product_id = params['product_id'];
 
         this.productServices.getProductDetails(this.product_id).subscribe((res)=> {
-          console.log(res);
-          this.product = res;
+          this.product = res.product;
         })
       });
   }

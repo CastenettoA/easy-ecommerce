@@ -10,10 +10,12 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { CollectionsMenuComponent } from './components/collections-menu/collections-menu.component';
 import { CollectionComponent } from './components/collection/collection.component';
 import { Page404Component } from './components/page404/page404.component';
 import { ProductComponent } from './components/product/product.component';
+import { StripsHtmlTagPipe } from './pipes/stripsHtmlTag';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ProductComponent } from './components/product/product.component';
     CollectionsMenuComponent,
     CollectionComponent,
     Page404Component,
-    ProductComponent
+    ProductComponent,
+    StripsHtmlTagPipe
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { ProductComponent } from './components/product/product.component';
     MatButtonToggleModule,
     MatCardModule,
     MatButtonModule,
+    MatTooltipModule,
 
     HttpClientModule,
     FormsModule,

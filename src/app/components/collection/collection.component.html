@@ -1,8 +1,42 @@
+<br>
+<br>
 <h2 *ngIf="products">Stai visualizzando i prodotti per {{colName}}</h2>
 
  <div *ngIf="products" class="products">
-    <div class="product" *ngFor="let product of products" (click)="goToProduct(product.id)">
-      {{product.title}}
-      <img mat-card-image :src="{{product.image.src}}" :alt="{{product.title}}">
-    </div>
+
+
+    <mat-card class="product" *ngFor="let product of products; let last = last;" (click)="goToProduct(product.id)">
+      <mat-card-header>
+        <mat-card-title *ngIf="product.title.length > 18; else elseBlock;" [matTooltip]="product.title">
+          {{product.title | slice:0:18 }} &#8230;
+        </mat-card-title>
+
+        <ng-template #elseBlock>
+          <mat-card-title>{{product.title}}</mat-card-title>
+        </ng-template>
+
+        <mat-card-subtitle *ngIf="product.body_html.length > 34; else elseBlockSub;" [matTooltip]="product.body_html | stripsHtmlTag">
+          <span>{{product.body_html | stripsHtmlTag | slice:0:28 }}</span>&#8230;
+        </mat-card-subtitle>
+
+        <ng-template #elseBlockSub>
+          <mat-card-subtitle>
+            <span>{{product.body_html | stripsHtmlTag}}</span>
+          </mat-card-subtitle>
+        </ng-template>
+      </mat-card-header>
+
+      <div class="img" [style.backgroundImage]="'url(' + product.image.src + ')'"></div>
+
+      <mat-card-content *ngIf="last">
+        <p>vendor: {{product.vendor}}</p>
+        <p>product_type: {{product.product_type}}</p>
+        <p>status: {{product.status}}</p>
+        <p>images: {{product.images.length}}</p>
+        <!-- <p>tags: <span *ngFor="let tag of product.tags">{{tag}} </span></p> -->
+        <p>tags: {{product.tags}}</p>
+      </mat-card-content>
+    </mat-card>
+
 </div> 
+
