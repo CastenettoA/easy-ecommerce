@@ -1,5 +1,4 @@
 export interface Product {
-  product: {
     admin_graphql_api_id: string;
     body_html: string;
     created_at: string;
@@ -17,5 +16,5 @@ export interface Product {
     title: string;
     updated_at: string;
     vendor: string;
-  }
+
   }

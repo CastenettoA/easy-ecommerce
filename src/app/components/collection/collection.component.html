@@ -2,10 +2,27 @@
 <br>
 <h2 *ngIf="products">Stai visualizzando i prodotti per {{colName}}</h2>
 
+<div class="filter">
+  <h4>Filtri</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Ordina per</mat-label>
+    <mat-select [formControl]="filtesSelect">
+      <mat-option (click)="orderProducts('reset')">Clear</mat-option>
+      <mat-option value="Alphabetic_ASC">Ascending (A-Z)</mat-option>
+      <mat-option value="Alphabetic_DESC">Descending (Z-A)</mat-option>
+      <mat-option value="Created_ASC">Created</mat-option>
+      <mat-option value="Created_DESC">Created Desc</mat-option>
+      <mat-option value="BestSelling" disabled>Best Selling</mat-option>
+      <mat-option value="PriceAsc" disabled>Price Asc</mat-option>
+      <mat-option value="PriceDesc" disabled>Price Desc</mat-option>
+    
+    </mat-select>
+  </mat-form-field>
+</div>
+
  <div *ngIf="products" class="products">
 
-
-    <mat-card class="product" *ngFor="let product of products; let last = last;" (click)="goToProduct(product.id)">
+    <mat-card class="product" *ngFor="let product of products.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage); let last = last;" (click)="goToProduct(product.id)">
       <mat-card-header>
         <mat-card-title *ngIf="product.title.length > 18; else elseBlock;" [matTooltip]="product.title">
           {{product.title | slice:0:18 }} &#8230;
@@ -38,5 +55,9 @@
       </mat-card-content>
     </mat-card>
 
+    <div class="pagination">
+      <button mat-raised-button color="primary" [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1; setPage(currentPage)">Prev</button>
+      <button mat-raised-button color="primary" [disabled]="currentPage * itemsPerPage >= products.length" (click)="currentPage = currentPage + 1; setPage(currentPage)">Next</button>
+    </div>
 </div> 
 

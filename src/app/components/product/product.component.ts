@@ -21,7 +21,7 @@ export class ProductComponent {
         this.product_id = params['product_id'];
 
         this.productServices.getProductDetails(this.product_id).subscribe((res)=> {
-          this.product = res.product;
+          this.product = res;
         })
       });
   }
