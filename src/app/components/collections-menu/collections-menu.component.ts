@@ -12,18 +12,21 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class CollectionsMenuComponent {
   collections?: Collection[];
   collection_id?: Collection["collection_id"];
+  collection_handle?: Collection["handle"];
   products?: Product[];
 
   constructor(private productServices: ProductService,
     private router: Router) {
-    this.productServices.getCollections().subscribe((res) => {
+
+    // get collections
+    this.productServices.collections$.subscribe((res) => {
       this.collections = res.collection_listings;
     });
   }
 
   // redirect to collection page
-  goToCollection(collection_id:number) {
-    this.router.navigate(['/collection', collection_id]);
+  goToCollection(handle:string, id:number) {
+    this.router.navigate([handle]);
   }
 
 }

@@ -8,7 +8,7 @@ import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'collection/:collection_id', component: CollectionComponent},
+  { path: ':handle', component: CollectionComponent},
   { path: 'collection/:collection_id/:product_id', component: ProductComponent},
   { path: '**', component: Page404Component }
 ];

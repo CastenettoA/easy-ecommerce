@@ -15,35 +15,44 @@ export class CollectionComponent {
   currentPage = 1;
   itemsPerPage = 8;
 
-  colName = 'Nome-Collezione';
-  collection_id?: number;
+  currentCollection?: Collection;
 
   products_original?: any[]; // used to restore filter
   products?: any[];
-  
+
   filtesSelect = new FormControl();
 
   constructor(private productServices: ProductService,
     private route: ActivatedRoute,
     private router: Router) {
 
-    this.route.queryParams.pipe(first()).subscribe(params => {
-      this.currentPage = +params['page'] || 1; // get current page from url. + convert string to number
-      this.filtesSelect.setValue(params['filter'] || 'reset'); // get current filter from url
-    });
+    // get collection details
+    this.productServices.collections$.subscribe((res) => {
+      let currentUrlHandle = this.router.url.split('/')[1]; // get current url handle
 
-    this.route.params.subscribe((params: Params) => {
+      // find collection.id from collection.handle
+      if (res.collection_listings) {
+        res.collection_listings.forEach((c: Collection) => {
+          if (c.handle == currentUrlHandle) {
+            this.currentCollection = c;
 
-      // get all product from current collection
-      this.collection_id = params['collection_id'];
-      this.productServices.getProductsFromCollection(this.collection_id).subscribe((res) => {
-        this.products = res.products;
-        this.products_original = [...res.products];
-
-        if(this.filtesSelect.value) {
-          this.orderProducts(this.filtesSelect.value); // order products
-        }
-      });
+            this.route.queryParams.pipe(first()).subscribe(params => {
+              this.currentPage = +params['page'] || 1; // get current page from url. + convert string to number
+              this.filtesSelect.setValue(params['filter'] || 'reset'); // get current filter from url
+    
+              // get collection products
+              this.productServices.getProductsFromCollection(this.currentCollection?.collection_id).subscribe((res) => {
+                this.products = res.products;
+                this.products_original = [...res.products];
+    
+                if (this.filtesSelect.value) {
+                  this.orderProducts(this.filtesSelect.value); // order products
+                }
+              });
+            });
+          }
+        });
+      }
     });
   }
 
@@ -76,7 +85,7 @@ export class CollectionComponent {
 
     switch (orderBy) {
       case 'reset':
-        let products_original_copy = this.products_original?.map(obj => ({ ...obj}));
+        let products_original_copy = this.products_original?.map(obj => ({ ...obj }));
         this.products = products_original_copy;
         break;
 
@@ -130,6 +139,6 @@ export class CollectionComponent {
 
   // redirect to product page
   goToProduct(product_id: number) {
-    this.router.navigate(['/collection', this.collection_id, product_id]);
+    this.router.navigate(['/collection', this.currentCollection?.collection_id, product_id]);
   }
 }
