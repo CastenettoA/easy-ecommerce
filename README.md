@@ -18,7 +18,7 @@ Link al sito pubblico: http://easy-c.netlify.com/
 
 ### Sull'automazione
 * Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare Github Copilot e Chat-GPT quando possibile.
-* Il progetto github è collegato a **netlify** ciò permette una pubblicazione automatica dell'applicativo ad ogni push (http://easy-c.netlify.com/) e l'esecuzione di 
+* Il progetto github è collegato a **netlify** che permette una pubblicazione automatica dell'applicativo ad ogni push (http://easy-c.netlify.com/) e l'esecuzione di 
 
 
 
