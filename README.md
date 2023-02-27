@@ -1,7 +1,40 @@
 # Easy Commerce
-Un ecommerce semplice da usare, creato in Angular con Angular Material.
+Un ecommerce di prodotti, creato in Angular che utilizza le Shopify API Rest.
 
-Link sito live: ???
+Link sito pubblico: http://easy-c.netlify.com/
+
+### Caratteristiche tecniche
+* SPA in Angular che mostra un elenco di prodotti. Cliccando sulla categoria si apre la categoria specifica che elenca i prodotti
+* E' possibile ordinare i prodotti **alfabeticamente** e per **data di creazione**. Nella stessa pagina è presente la paginazione e cliccando su un prodotto si visualizza il dettaglio del prodotto
+* Nel dettaglio del prodotto sono visibili i prodotti correlati della stessa categoria.
+
+### Sulla struttura del progetto Angular
+* Per strutturare e organizzare il codice ho diviso il codice in componenti ed ho utilizzato questa struttura per la divisione della logica principale:  /components /interfaces /pipes /services
+* E' stato scelto Material come base del progetto ed è stato utilizzato per vari elementi della UI come Icone, Chips, Card, Paginazione e altro ancora.
+* I test sono stati ommessi per poter consegnare tutto in 1 settimana.
+
+### Sull'automazione
+* Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare Github Copilot e Chat-GPT quando possibile.
+* Il progetto github è collegato a **netlify** ciò permette una pubblicazione automatica dell'applicativo ad ogni push (http://easy-c.netlify.com/) e l'esecuzione di 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+. Come ho scelto di strutturare il codice?
+. Quanta automazione e buone pratiche ho adottato?
+
+
+
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
