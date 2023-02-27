@@ -13,6 +13,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { CollectionsMenuComponent } from './components/collections-menu/collections-menu.component';
 import { CollectionComponent } from './components/collection/collection.component';
@@ -20,6 +25,7 @@ import { Page404Component } from './components/page404/page404.component';
 import { ProductComponent } from './components/product/product.component';
 import { StripsHtmlTagPipe } from './pipes/stripsHtmlTag';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -30,12 +36,17 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     Page404Component,
     ProductComponent,
     StripsHtmlTagPipe,
-    HomepageComponent
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     
+    // material
     BrowserAnimationsModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
@@ -43,10 +54,11 @@ import { HomepageComponent } from './components/homepage/homepage.component';
     MatButtonModule,
     MatTooltipModule,
     MatSelectModule,
-
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
+    MatIconModule,
+    MatChipsModule,
+    MatProgressBarModule,
+    MatBadgeModule,
+    MatMenuModule,
   ],
   bootstrap: [AppComponent]
 })

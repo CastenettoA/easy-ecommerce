@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product/product.service';
 
@@ -9,20 +9,15 @@ import { ProductService } from 'src/app/services/product/product.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
-  collection_id?: number;
-  product_id?: number;
   product?: any;
 
-
   constructor(private productServices: ProductService,
-    private route: ActivatedRoute) {
-      this.route.params.subscribe((params: Params) => {
-        this.collection_id = params['collection_id'];
-        this.product_id = params['product_id'];
+    private route: ActivatedRoute, private router: Router) {
+      let state:any = this.router.getCurrentNavigation()?.extras.state;
+      this.product = state.product;
+  }
 
-        this.productServices.getProductDetails(this.product_id).subscribe((res)=> {
-          this.product = res;
-        })
-      });
+  loadProduct() {
+
   }
 }

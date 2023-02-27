@@ -14,7 +14,9 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class CollectionComponent {
   currentPage = 1;
   itemsPerPage = 8;
+  handle?: string;
 
+  collections?: Collection[];
   currentCollection?: Collection;
 
   products_original?: any[]; // used to restore filter
@@ -25,41 +27,51 @@ export class CollectionComponent {
   constructor(private productServices: ProductService,
     private route: ActivatedRoute,
     private router: Router) {
-
-    // get collection details
-    this.productServices.collections$.subscribe((res) => {
-      let currentUrlHandle = this.router.url.split('/')[1]; // get current url handle
-
-      // find collection.id from collection.handle
-      if (res.collection_listings) {
-        res.collection_listings.forEach((c: Collection) => {
-          if (c.handle == currentUrlHandle) {
-            this.currentCollection = c;
-
-            this.route.queryParams.pipe(first()).subscribe(params => {
-              this.currentPage = +params['page'] || 1; // get current page from url. + convert string to number
-              this.filtesSelect.setValue(params['filter'] || 'reset'); // get current filter from url
-    
-              // get collection products
-              this.productServices.getProductsFromCollection(this.currentCollection?.collection_id).subscribe((res) => {
-                this.products = res.products;
-                this.products_original = [...res.products];
-    
-                if (this.filtesSelect.value) {
-                  this.orderProducts(this.filtesSelect.value); // order products
-                }
-              });
-            });
-          }
-        });
-      }
-    });
+    // save url handle 
+    this.handle = this.router.url.split('/')[1]; // get current url handle
+    this.handle = this.handle.split('?')[0]; // remove query string
   }
 
   ngOnInit() {
     this.filtesSelect.valueChanges.subscribe((value) => {
       this.orderProducts(value);
       this.setFilterQueryString(value); // set filter in url
+    });
+
+    // get collections on handle params change
+    this.route.params.subscribe((params: Params) => {
+      this.handle = params['handle']; // get current url handle      
+      this.loadCurrentCollection(); // load current collection
+    });
+
+    this.route.queryParams.pipe(first()).subscribe(params => {
+      this.currentPage = +params['page'] || 1; // get current page from url. + convert string to number
+      this.filtesSelect.setValue(params['filter']); // get current filter from url
+    });
+  }
+
+  loadCurrentCollection() {
+    this.productServices.collections$.subscribe((res) => {
+      if(res && res.length <= 0) return; // if res is null, return
+
+      this.collections = res.collection_listings;
+
+      // find current collection
+      this.collections?.forEach((collection: Collection) => {
+        if (collection.handle == this.handle) {
+          this.currentCollection = collection;
+        }
+      });
+
+      // get products from current collection
+      this.productServices.getProductsFromCollection(this.currentCollection?.collection_id).subscribe((res) => {
+        this.products = res.products;
+        this.products_original = [...res.products];
+
+        if (this.filtesSelect.value) {
+          this.orderProducts(this.filtesSelect.value); // order products
+        }
+      });
     });
   }
 
@@ -72,12 +84,15 @@ export class CollectionComponent {
     });
   }
 
-  setFilterQueryString(filter: string) {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { filter: filter },
-      queryParamsHandling: 'merge'
-    });
+  setFilterQueryString(filter?: string) {
+    if (filter?.length) {
+      // 
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { filter: filter },
+        queryParamsHandling: 'merge'
+      });
+    }
   }
 
   // order products
@@ -138,7 +153,9 @@ export class CollectionComponent {
   }
 
   // redirect to product page
-  goToProduct(product_id: number) {
-    this.router.navigate(['/collection', this.currentCollection?.collection_id, product_id]);
+  goToProduct(product:Product) {
+    this.router.navigate([this.handle, product.handle], {
+      state: { product }
+    });
   }
 }

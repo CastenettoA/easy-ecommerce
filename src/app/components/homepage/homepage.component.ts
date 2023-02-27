@@ -12,19 +12,20 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class HomepageComponent {
   collectionsProducts:[number, Product[]][] = [];
+  collections:Collection[] = [];
 
   constructor(private productServices: ProductService,
     private route: ActivatedRoute,
     private router: Router) {
-      // get collections
+      
+      // get collections detail
       this.productServices.collections$.subscribe((res) => {
-        let collections: any;
 
-        if(res.collection_listings) {
-          collections = res.collection_listings; 
+        if(res.collection_listings) { // if collections are available
+          this.collections = res.collection_listings;  // save collections detail
 
-          // get first five products from collections
-          collections.forEach((collection:Collection) => {
+          // get first five products from each collection
+          this.collections.forEach((collection:Collection) => {
             this.productServices.getProductsFromCollection(collection.collection_id, 5).subscribe((res:ProductListing) => {
               let coll_id = collection.collection_id;
               this.collectionsProducts.push([coll_id, res.products as Product[]]);
@@ -32,11 +33,32 @@ export class HomepageComponent {
           });
         }
       });
+  }
 
+  // find collection title from id
+  getCollectionTitle(collection_id:number) { 
+    let collection = this.collections.find((collection:Collection) => collection.collection_id === collection_id);
+    if(collection) {
+      return collection.title;
+    }
+    return '';
+  }
+
+  getCollectionDescription(collection_id:number) { 
+    let collection = this.collections.find((collection:Collection) => collection.collection_id === collection_id);
+    if(collection) {
+      return collection.body_html;
+    }
+    return '';
   }
 
   // redirect to product page
-  goToProduct(product_id:number) {
-    // this.router.navigate(['/collection', this.collection_id, product_id]);
+  goToProduct(product:Product, collection_id:number) {
+    // find collection handle
+    let collection = this.collections.find((collection:Collection) => collection.collection_id === collection_id);
+
+    this.router.navigate([collection?.handle, product.handle], {
+      state: { product }
+    });
   }
 }

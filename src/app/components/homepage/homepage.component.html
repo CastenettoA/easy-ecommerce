@@ -1,42 +1,41 @@
+<h1 class="base-padding">EasyCommerce. <span class="op-5">Dove amerai acquistare i prodotti che ami.</span></h1>
+<app-collections-menu></app-collections-menu>
 
-<div *ngIf="collectionsProducts && collectionsProducts.length === 3" class="products">
+<div *ngIf="collectionsProducts && collectionsProducts.length === 3; else elseblockLoadingSpinner" class="homepage-listing products base-padding">
     
-    <ng-container *ngFor="let collection of collectionsProducts">
-        <h2>Id collezione: <u>{{ collection[0] }}</u></h2>
+    <div class="collection-single" *ngFor="let collection of collectionsProducts">
+        <h2>Categoria: {{ getCollectionTitle(collection[0]) }}</h2>
 
-
-        <mat-card class="product" *ngFor="let product of collection[1]; let last = last;" (click)="goToProduct(product.id)">
-            <mat-card-header>
-                <mat-card-title *ngIf="product.title.length > 18; else elseBlock;" [matTooltip]="product.title">
-                    {{product.title | slice:0:18 }} &#8230;
-                </mat-card-title>
-
-                <ng-template #elseBlock>
-                    <mat-card-title>{{product.title}}</mat-card-title>
-                </ng-template>
-
-                <mat-card-subtitle *ngIf="product.body_html.length > 34; else elseBlockSub;"
-                    [matTooltip]="product.body_html | stripsHtmlTag">
-                    <span>{{product.body_html | stripsHtmlTag | slice:0:28 }}</span>&#8230;
-                </mat-card-subtitle>
-
-                <ng-template #elseBlockSub>
-                    <mat-card-subtitle>
-                        <span>{{product.body_html | stripsHtmlTag}}</span>
+        <div class="products bg-gray">
+            <mat-card class="product" *ngFor="let product of collection[1]; let last = last;" (click)="goToProduct(product, collection[0])">
+                <mat-card-header>
+                    <mat-card-title *ngIf="product.title.length > 18; else elseBlock;" [matTooltip]="product.title">
+                        {{product.title | slice:0:18 }} &#8230;
+                    </mat-card-title>
+    
+                    <ng-template #elseBlock>
+                        <mat-card-title>{{product.title}}</mat-card-title>
+                    </ng-template>
+    
+                    <mat-card-subtitle *ngIf="product.body_html.length > 34; else elseBlockSub;"
+                        [matTooltip]="product.body_html | stripsHtmlTag">
+                        <span>{{product.body_html | stripsHtmlTag | slice:0:28 }}</span>&#8230;
                     </mat-card-subtitle>
-                </ng-template>
-            </mat-card-header>
-
-            <div class="img" [style.backgroundImage]="'url(' + product.image.src + ')'"></div>
-
-            <mat-card-content *ngIf="last">
-                <p>vendor: {{product.vendor}}</p>
-                <p>product_type: {{product.product_type}}</p>
-                <p>status: {{product.status}}</p>
-                <p>images: {{product.images.length}}</p>
-                <p>tags: {{product.tags}}</p>
-            </mat-card-content> 
-        </mat-card> 
-    </ng-container>
+    
+                    <ng-template #elseBlockSub>
+                        <mat-card-subtitle>
+                            <span>{{product.body_html | stripsHtmlTag}}</span>
+                        </mat-card-subtitle>
+                    </ng-template>
+                </mat-card-header>
+    
+                <div class="img" [style.backgroundImage]="'url(' + product.image.src + ')'"></div>
+            </mat-card> 
+        </div>
+    </div>
 
 </div>
+
+<ng-template #elseblockLoadingSpinner>
+    <mat-progress-bar style="margin-top: 3em;" mode="indeterminate"></mat-progress-bar>
+  </ng-template>

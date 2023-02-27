@@ -1,63 +1,74 @@
-<br>
-<br>
-<h2 *ngIf="products">Stai visualizzando i prodotti per {{currentCollection?.title}}</h2>
+<div class="collection" *ngIf="currentCollection && products; else elseblockLoadingSpinner">
 
-<div class="filter">
-  <h4>Filtri</h4>
-  <mat-form-field appearance="fill">
-    <mat-label>Ordina per</mat-label>
-    <mat-select [formControl]="filtesSelect">
-      <mat-option (click)="orderProducts('reset')">Clear</mat-option>
-      <mat-option value="Alphabetic_ASC">Ascending (A-Z)</mat-option>
-      <mat-option value="Alphabetic_DESC">Descending (Z-A)</mat-option>
-      <mat-option value="Created_ASC">Created</mat-option>
-      <mat-option value="Created_DESC">Created Desc</mat-option>
-      <mat-option value="BestSelling" disabled>Best Selling</mat-option>
-      <mat-option value="PriceAsc" disabled>Price Asc</mat-option>
-      <mat-option value="PriceDesc" disabled>Price Desc</mat-option>
+  <br>
+  <div class="collection-top base-padding xs-flex-flow-column">
+    <div class="collections">
+      <div class="collection-item"
+        [style.background-image]="'url('+ currentCollection.default_product_image.src +')'">
+        <div class="bg-color" [ngClass]="currentCollection.handle"></div>
+        <p class="title">{{currentCollection.title}}</p>
+      </div>
+    </div>
+    <br>
+  
+    <div class="filter">
+      <h4>Filtra per</h4>
+      <mat-form-field appearance="fill">
+        <mat-label>Seleziona un filtro</mat-label>
+        <mat-select [formControl]="filtesSelect">
+          <mat-option (click)="orderProducts('reset')">Clear</mat-option>
+          <mat-option value="Alphabetic_ASC">Ascending (A-Z)</mat-option>
+          <mat-option value="Alphabetic_DESC">Descending (Z-A)</mat-option>
+          <mat-option value="Created_ASC">Created</mat-option>
+          <mat-option value="Created_DESC">Created Desc</mat-option>
+          <mat-option value="BestSelling" disabled>Best Selling</mat-option>
+          <mat-option value="PriceAsc" disabled>Price Asc</mat-option>
+          <mat-option value="PriceDesc" disabled>Price Desc</mat-option>
+        
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  
+   <div>
+      <h2 class="base-padding xs-margin-top-1em">Prodotti</h2>
+
+      <div class="products base-padding">
+        <mat-card class="product"
+        *ngFor="let product of products.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage); let last = last;" (click)="goToProduct(product)">
+          <mat-card-header>
+            <mat-card-title *ngIf="product.title.length > 18; else elseBlock;" [matTooltip]="product.title">
+              {{product.title | slice:0:18 }} &#8230;
+            </mat-card-title>
     
-    </mat-select>
-  </mat-form-field>
+            <ng-template #elseBlock>
+              <mat-card-title>{{product.title}}</mat-card-title>
+            </ng-template>
+    
+            <mat-card-subtitle *ngIf="product.body_html.length > 34; else elseBlockSub;" [matTooltip]="product.body_html | stripsHtmlTag">
+              <span>{{product.body_html | stripsHtmlTag | slice:0:28 }}</span>&#8230;
+            </mat-card-subtitle>
+    
+            <ng-template #elseBlockSub>
+              <mat-card-subtitle>
+                <span>{{product.body_html | stripsHtmlTag}}</span>
+              </mat-card-subtitle>
+            </ng-template>
+          </mat-card-header>
+    
+          <div class="img" [style.backgroundImage]="'url(' + product.image.src + ')'"></div>
+        </mat-card>
+      </div>
+  </div> 
+
+  <div class="pagination base-padding" *ngIf="products">
+    <button mat-raised-button color="primary" [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1; setPage(currentPage)">Prev</button>
+    <button mat-raised-button color="primary" [disabled]="currentPage * itemsPerPage >= products.length" (click)="currentPage = currentPage + 1; setPage(currentPage)">Next</button>
+  </div>
+  
+  
 </div>
 
- <div *ngIf="products" class="products">
-
-    <mat-card class="product" *ngFor="let product of products.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage); let last = last;" (click)="goToProduct(product.id)">
-      <mat-card-header>
-        <mat-card-title *ngIf="product.title.length > 18; else elseBlock;" [matTooltip]="product.title">
-          {{product.title | slice:0:18 }} &#8230;
-        </mat-card-title>
-
-        <ng-template #elseBlock>
-          <mat-card-title>{{product.title}}</mat-card-title>
-        </ng-template>
-
-        <mat-card-subtitle *ngIf="product.body_html.length > 34; else elseBlockSub;" [matTooltip]="product.body_html | stripsHtmlTag">
-          <span>{{product.body_html | stripsHtmlTag | slice:0:28 }}</span>&#8230;
-        </mat-card-subtitle>
-
-        <ng-template #elseBlockSub>
-          <mat-card-subtitle>
-            <span>{{product.body_html | stripsHtmlTag}}</span>
-          </mat-card-subtitle>
-        </ng-template>
-      </mat-card-header>
-
-      <div class="img" [style.backgroundImage]="'url(' + product.image.src + ')'"></div>
-
-      <mat-card-content *ngIf="last">
-        <p>vendor: {{product.vendor}}</p>
-        <p>product_type: {{product.product_type}}</p>
-        <p>status: {{product.status}}</p>
-        <p>images: {{product.images.length}}</p>
-        <!-- <p>tags: <span *ngFor="let tag of product.tags">{{tag}} </span></p> -->
-        <p>tags: {{product.tags}}</p>
-      </mat-card-content>
-    </mat-card>
-
-    <div class="pagination">
-      <button mat-raised-button color="primary" [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1; setPage(currentPage)">Prev</button>
-      <button mat-raised-button color="primary" [disabled]="currentPage * itemsPerPage >= products.length" (click)="currentPage = currentPage + 1; setPage(currentPage)">Next</button>
-    </div>
-</div> 
-
+<ng-template #elseblockLoadingSpinner>
+  <mat-progress-bar style="margin-top: 3em;" mode="indeterminate"></mat-progress-bar>
+</ng-template>

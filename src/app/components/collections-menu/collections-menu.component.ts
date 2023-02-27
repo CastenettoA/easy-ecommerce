@@ -25,7 +25,7 @@ export class CollectionsMenuComponent {
   }
 
   // redirect to collection page
-  goToCollection(handle:string, id:number) {
+  goToCollection(handle:string) {
     this.router.navigate([handle]);
   }
 

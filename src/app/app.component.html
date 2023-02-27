@@ -1,9 +1,40 @@
 <main>
   <header>
-    <h1 routerLink="/" style="cursor: pointer;">Easycommerce</h1>
-    <p>Un ecommerce semplice, comodo e bello.</p>
+    <div class="logo base-padding">
+      <div class="left-menu" routerLink="/">
+        <img src="https://cdn3.iconfinder.com/data/icons/brand-identity/24/crown_luxury_royal_authority_royalty-64.png">
+        <p style="cursor: pointer;">Easycommerce</p>
+      </div>
+
+      <div class="right-menu">
+        <div class="menu-link hide-mobile" *ngIf="collections$">
+          <a :routerLink="{{collection.handle}}" [class.active]="activeCollectionHandle==collection.handle" *ngFor="let collection of collections$">{{collection.title}}</a>
+        </div>
+
+        <div class="menu-link hide-desktop">
+          <button mat-button [matMenuTriggerFor]="menu">
+            Categorie
+          </button>
+          <mat-menu #menu="matMenu">
+            <a mat-menu-item :routerLink="{{collection.handle}}" *ngFor="let collection of collections$">{{collection.title}}</a>
+          </mat-menu>
+        </div>
+  
+        <div class="menu-icon hide-500px">
+          <button mat-icon-button aria-label="Example icon button with a home icon">
+            <mat-icon matBadge="2">shopping_cart</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>person</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="discount">
+      <p>15% di sconto su tutti i prodotti del catalogo online nel mese di Febbraio.</p>
+    </div>
   </header>
 
-  <app-collections-menu></app-collections-menu>
   <router-outlet></router-outlet>
 </main>

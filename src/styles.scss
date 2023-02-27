@@ -2,20 +2,101 @@
 
 html,
 body {
+    background-color: #f5f5f7;
     height: 100%;
-}
-
-body {
     margin: 0;
+    padding: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+h1 {
+    // to override the material h1 style
+    margin: 2em 0 !important;
+    max-width: 800px;
+    font-size: 3em !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    line-height: 100% !important;
+}
+
 header {
-    h1 {
+    // max-width: 1000px;
+
+    .logo {
+        display: flex;
+        align-items: center;
+        margin: 1em 0;
+
+        .left-menu {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+
+        img {
+            width: 30px;
+        }
+
+        p {
+            margin: 0;
+            margin-left: 1em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: .9em;
+            padding: 0.2em 0 0 0;
+        }
+
+        .right-menu {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+
+            .menu-link {
+
+                a {
+                    margin-right: 1.3em;
+                    text-decoration: none;
+                    color: #555;
+
+                    &:hover {
+                        text-decoration: underline;
+                        color: #333;
+                    }
+
+                    &.active {
+                        color: #333;
+                        text-decoration: underline;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .menu-icon {}
+        }
+    }
+
+    .discount {
+        margin-bottom: 1em;
+        padding: 1em;
+        background-color: #fff;
+        color: #111;
+
+        p {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
     }
 }
 
 .collections {
+    @media screen and (max-width: 865px) {
+        display: flex;
+        flex-flow: column;          
+    }
+
     .collection-item {
         position: relative;
         display: inline-block;
@@ -31,10 +112,14 @@ header {
         cursor: pointer;
         transition: all .2s ease-in-out;
 
+        @media screen and (max-width: 865px) {
+            margin-bottom: .5em;        
+        }
+
         &:hover {
-            box-shadow: 
-            2px 2px 2px rgba(0, 0, 0, 0.3), 
-            -2px -2px 2px rgba(255, 255, 255, 0.3);
+            box-shadow:
+                2px 2px 2px rgba(0, 0, 0, 0.3),
+                -2px -2px 2px rgba(255, 255, 255, 0.3);
         }
 
         p.title {
@@ -49,7 +134,7 @@ header {
             font-size: 1.5em;
             font-weight: 500;
             z-index: 2;
-        border-radius: 1em;
+            border-radius: 1em;
 
         }
 
@@ -61,7 +146,7 @@ header {
             left: 0;
             z-index: 1;
             opacity: .7;
-        border-radius: 1em;
+            border-radius: 1em;
 
 
             &.home-and-garden {
@@ -79,23 +164,51 @@ header {
     }
 }
 
+.homepage-listing {
+    margin-top: 5em;
+
+    .collection-single {
+        margin-top: 1em;
+    }
+}
+
+.collection-top {
+    display: flex;
+    .filter {
+        margin-left: .1em;
+        h4 {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: .86em;
+            margin-bottom: -0.1em;
+        }
+    }
+}
+
 .products {
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
 
+    background-color: #cfd8dc;
+    padding-top: 2em;
+
     .product {
+        position: relative;
         width: 250px;
         background-color: #fafafa;
         border: 1px solid #ccc;
-        margin-bottom: 1em;
+        margin-bottom: 2em;
         transition: all .2s ease-in-out;
+        border-radius: 1.4em;
 
         .img {
             height: 140px;
             width: 100%;
             background-repeat: no-repeat;
             background-size: cover;
+            border-bottom-left-radius: 1.4em;
+            border-bottom-right-radius: 1.4em;
         }
 
         &:hover {
@@ -105,9 +218,70 @@ header {
 
         mat-card-subtitle {
             margin-bottom: .4em;
-            span, p {
+
+            span,
+            p {
                 display: inline-block;
             }
         }
+    }
+}
+
+.pagination {
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+
+    button {
+        margin-right: 1em;
+    }
+}
+
+.product-single {
+    max-width: 500px;
+
+    .tags {
+            margin-right: .4em;
+    }
+}
+
+/* generic style */
+
+.base-padding {
+    padding-right: 10vw;
+    padding-left: 10vw;
+}
+
+
+.op-5 {
+    opacity: .55;
+}
+
+.hide-mobile {
+    @media screen and (max-width: 762px) {
+        display: none;
+    }
+}
+
+.hide-desktop {
+    @media screen and (min-width: 762px) {
+        display: none;
+    }
+}
+
+.hide-500px {
+    @media screen and (max-width: 500px) {
+        display: none;
+    }
+}
+
+.xs-flex-flow-column {
+    @media screen and (max-width: 660px) {
+        flex-flow: column;
+    }
+}
+
+.xs-margin-top-1em {
+    @media screen and (max-width: 660px) {
+        margin-top: 1em;
     }
 }
