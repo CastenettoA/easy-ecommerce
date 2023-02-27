@@ -3,8 +3,7 @@ Un ecommerce di prodotti, creato in Angular che utilizza le Shopify API Rest.
 
 Link sito pubblico: http://easy-c.netlify.com/
 
-![homepage](https://i.ibb.co/wr2wXr1/Easy-Commerce-hp.png)
-
+![homepage](https://i.ibb.co/wr2wXr1/Easy-Commerce-hp.png | width=200)
 
 
 ### Caratteristiche tecniche
