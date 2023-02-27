@@ -2,22 +2,61 @@
   <h2 style="margin-bottom: 0;">Dettagli prodotto</h2>
   <p class="op-5">Qui puoi trovare i dettagli del prodotto selezionato.</p>
   <br>
-  
+
   <mat-card class="product product-single" *ngIf="product">
     <mat-card-header>
-      <mat-card-title>{{product.title}}</mat-card-title>
-      <mat-card-subtitle [innerHTML]="product.body_html"></mat-card-subtitle>
+      <mat-card-title style="margin-bottom: .3em;">{{product.title}}</mat-card-title>
+      <!-- <mat-card-subtitle [innerHTML]="product.body_html"></mat-card-subtitle> -->
     </mat-card-header>
     <img mat-card-image :src="{{product.image.src}}" :alt="{{product.image.alt}}">
     <mat-card-content>
       <br>
-      <h2>Dettagli <span class="op-5">di {{product.title}}</span></h2>
-      <p class="op-5">{{product.body_html | stripsHtmlTag }}</p>
+      <h3>{{product.body_html | stripsHtmlTag }}</h3>
       <p>Produttore: {{product.vendor}}</p>
       <p>Categoria: {{product.product_type}}</p>
-      <p>Status: {{product.status}}</p>
-      <p>Immagini prodotto: {{product.images.length}}</p>
-      <mat-chip class="tags" *ngFor="let tag of product.tags.split(',')">{{tag}}</mat-chip>
+      <p style="display: flex; align-items: center;">
+        <mat-icon fontIcon="tags"></mat-icon>
+        <span style="margin-right: .4em;">Tags:</span> 
+        <mat-chip class="tags" *ngFor="let tag of product.tags.split(',')">{{tag}}</mat-chip></p>
+
+      <mat-card-actions align="end" *ngIf="price">
+        <button mat-stroked-button style="margin-right: .3em;">
+          <mat-icon fontIcon="favorites"></mat-icon>Salva
+        </button>
+        <button mat-stroked-button>
+          <mat-icon fontIcon="euro"></mat-icon>Acquista a <b>{{price}}€</b></button>
+      </mat-card-actions>
     </mat-card-content>
-</mat-card>
+  </mat-card>
+</div>
+
+
+<div class="related-product-in-collection">
+  <h2 class="base-padding mt-2">Prodotti correlati</h2>
+  <div class="products base-padding">
+    <mat-card class="product" *ngFor="let product of relatedProducts" (click)="goToProduct(product)">
+      <mat-card-header>
+        <mat-card-title *ngIf="product.title.length > 18; else elseBlock;" [matTooltip]="product.title">
+          {{product.title | slice:0:18 }} &#8230;
+        </mat-card-title>
+
+        <ng-template #elseBlock>
+          <mat-card-title>{{product.title}}</mat-card-title>
+        </ng-template>
+
+        <mat-card-subtitle *ngIf="product.body_html.length > 34; else elseBlockSub;"
+          [matTooltip]="product.body_html | stripsHtmlTag">
+          <span>{{product.body_html | stripsHtmlTag | slice:0:28 }}</span>&#8230;
+        </mat-card-subtitle>
+
+        <ng-template #elseBlockSub>
+          <mat-card-subtitle>
+            <span>{{product.body_html | stripsHtmlTag}}</span>
+          </mat-card-subtitle>
+        </ng-template>
+      </mat-card-header>
+
+      <div class="img" [style.backgroundImage]="'url(' + product.image.src + ')'"></div>
+    </mat-card>
+  </div>
 </div>

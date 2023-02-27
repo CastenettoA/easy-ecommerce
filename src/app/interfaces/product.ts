@@ -16,5 +16,5 @@ export interface Product {
     title: string;
     updated_at: string;
     vendor: string;
-
+    variants: any[];
   }

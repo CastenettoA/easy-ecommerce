@@ -150,26 +150,46 @@ header {
 
 
             &.home-and-garden {
-                background-color: salmon;
+                background-color: #38a3a5;
             }
 
             &.apparel {
-                background-color: sandybrown;
+                background-color: #57cc99;
             }
 
             &.jewelry {
-                background-color: saddlebrown;
-            }
+                background-color: #80ed99;
+            }            
         }
     }
 }
 
 .homepage-listing {
-    margin-top: 5em;
+    margin-top: 4.5em;
 
     .collection-single {
-        margin-top: 1em;
+        padding-top: 2em;
+
+        mat-chip {
+            font-size: 1.4em;
+            font-weight: 500;
+            opacity: .9;
+            text-decoration: underline;
+        }
     }
+}
+
+// collections bg colors   
+.col_bg_266329686089 { // home and garden
+    background-color: #38a3a5a6;
+}
+
+.col_bg_266329391177 { // appareal
+    background-color: #57cc9999;
+}
+
+.col_bg_266329161801 { // jewelry
+    background-color: #80ed99a3;
 }
 
 .collection-top {
@@ -189,8 +209,6 @@ header {
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;
-
-    background-color: #cfd8dc;
     padding-top: 2em;
 
     .product {
@@ -256,6 +274,14 @@ header {
     opacity: .55;
 }
 
+.mt-2 {
+    margin-top: 2em !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
 .hide-mobile {
     @media screen and (max-width: 762px) {
         display: none;
@@ -269,7 +295,7 @@ header {
 }
 
 .hide-500px {
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 550px) {
         display: none;
     }
 }
@@ -284,4 +310,8 @@ header {
     @media screen and (max-width: 660px) {
         margin-top: 1em;
     }
+}
+
+.mat-badge-content {
+    background: #38a3a5;
 }

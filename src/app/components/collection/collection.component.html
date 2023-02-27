@@ -31,9 +31,9 @@
   </div>
   
    <div>
-      <h2 class="base-padding xs-margin-top-1em">Prodotti</h2>
+      <h2 class="base-padding xs-margin-top-1em">Prodotti ({{products.length}})</h2>
 
-      <div class="products base-padding">
+      <div class="products base-padding" [ngClass]="'col_bg_'+currentCollection.collection_id">
         <mat-card class="product"
         *ngFor="let product of products.slice((currentPage-1)*itemsPerPage, currentPage*itemsPerPage); let last = last;" (click)="goToProduct(product)">
           <mat-card-header>

@@ -27,15 +27,6 @@ export class ProductService {
   }
 
 
-  // // get all collection details
-  // getCollections(): Observable<{collection_listings: Collection[]}> {
-  //   return this.http.get<{collection_listings: Collection[]}>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/collection_listings.json`)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     )
-  // }
-
-
   // get collection products by collection id
   getProductsFromCollection(coll_id: number | undefined, limit?: number): Observable<ProductListing> {
 
@@ -51,8 +42,8 @@ export class ProductService {
   }
 
   // get product details from product id
-  getProductDetails(prod_id: number | undefined): Observable<Product> {
-    return this.http.get<Product>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/products/${prod_id}.json`)
+  getProductDetails(prod_id: number | undefined): Observable<{product: Product}> {
+    return this.http.get<{product: Product}>(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/products/${prod_id}.json`)
       .pipe(
         catchError(this.handleError)
       )

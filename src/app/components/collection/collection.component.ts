@@ -157,5 +157,11 @@ export class CollectionComponent {
     this.router.navigate([this.handle, product.handle], {
       state: { product }
     });
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 }
