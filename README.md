@@ -14,7 +14,7 @@ Link al sito pubblico: http://easy-c.netlify.com/
 ### Sulla struttura del progetto Angular
 * Per strutturare e organizzare il codice ho diviso il codice in componenti ed ho utilizzato questa struttura per la divisione della logica principale:  /components /interfaces /pipes /services
 * E' stato scelto Material come base del progetto ed è stato utilizzato per vari elementi della UI come Icone, Chips, Card, Paginazione e altro ancora.
-* I test sono stati ommessi per poter consegnare tutto in 1 settimana.
+* I test sono stati ommessi per poter consegnare tutto in 1 settimana senza dilungarmi troppo con lo sviluppo.
 
 ### Sull'automazione
 * Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare Github Copilot e Chat-GPT quando possibile.
