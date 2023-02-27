@@ -3,6 +3,10 @@ Un ecommerce di prodotti, creato in Angular che utilizza le Shopify API Rest.
 
 Link sito pubblico: http://easy-c.netlify.com/
 
+![homepage](https://i.ibb.co/wr2wXr1/Easy-Commerce-hp.png)
+
+
+
 ### Caratteristiche tecniche
 * SPA in Angular che mostra un elenco di prodotti. Cliccando sulla categoria si apre la categoria specifica che elenca i prodotti
 * E' possibile ordinare i prodotti **alfabeticamente** e per **data di creazione**. Nella stessa pagina è presente la paginazione e cliccando su un prodotto si visualizza il dettaglio del prodotto
