@@ -1,5 +1,5 @@
 # Easy Commerce
-Un ecommerce di prodotti creato in Angular che utilizza le Shopify API Rest.
+Un ecommerce di prodotti creato in Angular che utilizza le Shopify Rest API.
 
 Link sito pubblico: http://easy-c.netlify.com/
 
