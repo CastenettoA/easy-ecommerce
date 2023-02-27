@@ -22,23 +22,7 @@ Link al sito pubblico: http://easy-c.netlify.com/
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-. Come ho scelto di strutturare il codice?
-. Quanta automazione e buone pratiche ho adottato?
-
-
-
-
+# Angular info and how to launch the project locally.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
