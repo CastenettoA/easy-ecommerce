@@ -10,6 +10,7 @@ Link al sito pubblico: http://easy-c.netlify.com/
 2. installare le dipendenze con **npm install**
 3. servire il progetto con **ng serve**
 4. andare su **http://localhost:4200/**
+5. Divertiti 😁⭐✨✨✨
 
 
 ### Caratteristiche tecniche
