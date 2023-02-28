@@ -7,8 +7,8 @@ Link al sito pubblico: http://easy-c.netlify.com/
 
 
 ### Caratteristiche tecniche
-* SPA in Angular che mostra un elenco di prodotti. Cliccando sulla categoria si apre la categoria specifica che elenca i prodotti
-* E' possibile ordinare i prodotti **alfabeticamente** e per **data di creazione**. Nella stessa pagina è presente la paginazione e cliccando su un prodotto si visualizza il dettaglio del prodotto
+* SPA in Angular che mostra un elenco di prodotti recuperati tramite le API REST di Shopify. Cliccando sulla categoria si apre la categoria specifica che elenca i prodotti.
+* E' possibile ordinare i prodotti **alfabeticamente** e per **data di creazione**. Nella stessa pagina è presente la paginazione e cliccando su un prodotto si visualizza il dettaglio del prodotto. Riaggiornando la pagina i filtri vengono mantenuti. Ciò facilita la navigazione e la condivisione della pagina con amici
 * Nel dettaglio del prodotto sono visibili i prodotti correlati della stessa categoria.
 
 ### Sulla struttura del progetto Angular
