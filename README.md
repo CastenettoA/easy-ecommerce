@@ -21,7 +21,7 @@ Link al sito pubblico: http://easy-c.netlify.com/
 ### Sull'automazione
 * Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare **Github Copilot e Chat-GPT**.
 * Il progetto github è collegato a **Netlify**. Ciò consente una pubblicazione automatica della SPA ad ogni push a questo link (http://easy-c.netlify.com/) e l'esecuzione automatica del test **LightHouse**
-![LightHouse]([https://i.ibb.co/wr2wXr1/Easy-Commerce-hp.png](https://i.ibb.co/hZ70JVz/Deploy-details-easy-c.png))
+![LightHouse](https://i.ibb.co/hZ70JVz/Deploy-details-easy-c.png)
 
 
 
