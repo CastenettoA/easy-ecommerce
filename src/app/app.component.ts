@@ -33,7 +33,7 @@ export class AppComponent {
         // Show loading indicator
         let url = this.productServices.getCollectionHandle(event.url);
 
-        if (url.length > 0) {
+        if (url && url.length > 0) {
           this.checkHandle(url);
         } else {
           this.activeCollectionHandle = '';
