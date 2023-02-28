@@ -5,6 +5,12 @@ Link al sito pubblico: http://easy-c.netlify.com/
 
 ![homepage](https://i.ibb.co/wr2wXr1/Easy-Commerce-hp.png)
 
+### Come installare il progetto in locale
+1. **clonare** il repo in locale
+2. installare le dipendenze con **npm install**
+3. servire il progetto con **ng serve**
+4. andare su **http://localhost:4200/**
+
 
 ### Caratteristiche tecniche
 * SPA in Angular che mostra un elenco di prodotti recuperati tramite le API REST di Shopify. Cliccando sulla categoria si apre la categoria specifica che elenca i prodotti.
@@ -22,6 +28,9 @@ Link al sito pubblico: http://easy-c.netlify.com/
 * Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare **Github Copilot e Chat-GPT**.
 * Il progetto github è collegato a **Netlify**. Ciò consente una pubblicazione automatica della SPA ad ogni push a questo link (http://easy-c.netlify.com/) e l'esecuzione automatica del test **LightHouse**
 ![LightHouse](https://i.ibb.co/hZ70JVz/Deploy-details-easy-c.png)
+
+
+
 
 
 
