@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: ':handle', component: CollectionComponent},
   { path: ':handle/:title', component: ProductComponent},
-  { path: '**', component: Page404Component }
+  // { path: '**', component: Page404Component }
 ];
 
 @NgModule({
