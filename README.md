@@ -1,10 +1,9 @@
 # Easy Commerce
-Un ecommerce di prodotti, creato in Angular che utilizza le Shopify API Rest.
+Un ecommerce di prodotti creato in Angular che utilizza le Shopify Rest API.
 
-Link sito pubblico: http://easy-c.netlify.com/
+Link al sito pubblico: http://easy-c.netlify.com/
 
 ![homepage](https://i.ibb.co/wr2wXr1/Easy-Commerce-hp.png)
-
 
 
 ### Caratteristiche tecniche
@@ -15,31 +14,15 @@ Link sito pubblico: http://easy-c.netlify.com/
 ### Sulla struttura del progetto Angular
 * Per strutturare e organizzare il codice ho diviso il codice in componenti ed ho utilizzato questa struttura per la divisione della logica principale:  /components /interfaces /pipes /services
 * E' stato scelto Material come base del progetto ed è stato utilizzato per vari elementi della UI come Icone, Chips, Card, Paginazione e altro ancora.
-* I test sono stati ommessi per poter consegnare tutto in 1 settimana.
+* I test sono stati ommessi per poter consegnare tutto in 1 settimana senza dilungarmi troppo con lo sviluppo.
 
 ### Sull'automazione
 * Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare Github Copilot e Chat-GPT quando possibile.
-* Il progetto github è collegato a **netlify** ciò permette una pubblicazione automatica dell'applicativo ad ogni push (http://easy-c.netlify.com/) e l'esecuzione di 
+* Il progetto github è collegato a **netlify** che permette una pubblicazione automatica dell'applicativo ad ogni push (http://easy-c.netlify.com/) e l'esecuzione di 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-. Come ho scelto di strutturare il codice?
-. Quanta automazione e buone pratiche ho adottato?
-
-
-
-
+# Angular info and how to launch the project locally.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
