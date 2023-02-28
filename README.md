@@ -14,11 +14,14 @@ Link al sito pubblico: http://easy-c.netlify.com/
 ### Sulla struttura del progetto Angular
 * Per strutturare e organizzare il codice ho diviso il codice in componenti ed ho utilizzato questa struttura per la divisione della logica principale:  /components /interfaces /pipes /services
 * E' stato scelto Material come base del progetto ed è stato utilizzato per vari elementi della UI come Icone, Chips, Card, Paginazione e altro ancora.
-* I test sono stati ommessi per poter consegnare tutto in 1 settimana senza dilungarmi troppo con lo sviluppo.
+* Il **servizio** productService si occupa di effettuare le chiamate REST e ricevere i dati di collezioni e prodotti. In questo file è presente anche un collection observable utilizzato per evitare di ripetere chiamate REST non necessarie.
+* Dove possibile il codice è stato separato in componenti ed è stato diviso in funzione cercando di evitare grossi blocchi di codice, sforzandomi di seguire quindi la pratica consigliata da angular di una funzione per operazione.
+* I test del codice sono stati ommessi per poter consegnare tutto in 1 settimana senza dilungarmi troppo con lo sviluppo.
 
 ### Sull'automazione
-* Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare Github Copilot e Chat-GPT quando possibile.
-* Il progetto github è collegato a **netlify** che permette una pubblicazione automatica dell'applicativo ad ogni push (http://easy-c.netlify.com/) e l'esecuzione di 
+* Per velocizzare la creazione del progetto e soprattutto per automatizzare task meccaniche è stato scelto di utilizzare **Github Copilot e Chat-GPT**.
+* Il progetto github è collegato a **Netlify**. Ciò consente una pubblicazione automatica della SPA ad ogni push a questo link (http://easy-c.netlify.com/) e l'esecuzione automatica del test **LightHouse**
+![LightHouse]([https://i.ibb.co/wr2wXr1/Easy-Commerce-hp.png](https://i.ibb.co/hZ70JVz/Deploy-details-easy-c.png))
 
 
 
