@@ -8,7 +8,7 @@
 
       <div class="right-menu">
         <div class="menu-link hide-mobile" *ngIf="collections$">
-          <a :routerLink="{{collection.handle}}" [class.active]="activeCollectionHandle==collection.handle" *ngFor="let collection of collections$">{{collection.title}}</a>
+          <a :routerLink="c/{{collection.handle}}" [class.active]="activeCollectionHandle==collection.handle" *ngFor="let collection of collections$">{{collection.title}}</a>
         </div>
 
         <div class="menu-link hide-desktop">
@@ -16,7 +16,7 @@
             Categorie
           </button>
           <mat-menu #menu="matMenu">
-            <a mat-menu-item :routerLink="{{collection.handle}}" *ngFor="let collection of collections$">{{collection.title}}</a>
+            <a mat-menu-item :routerLink="c/{{collection.handle}}" *ngFor="let collection of collections$">{{collection.title}}</a>
           </mat-menu>
         </div>
   

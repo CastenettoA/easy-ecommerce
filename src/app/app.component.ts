@@ -16,16 +16,22 @@ export class AppComponent {
   constructor(private productServices: ProductService,
     private router: Router) {
 
+    this.getCollections();
+    this.checkActiveCollection();
+  }
+
+  getCollections() {
     this.productServices.collections$.subscribe((res) => {
       if (res && res.length <= 0) return; // if res is null, return
       this.collections$ = res.collection_listings;
     });
+  }
 
+  checkActiveCollection() {
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationStart) {
         // Show loading indicator
-        let url = event.url.split('/')[1]; // get current url handle
-        url = url.split('?')[0]; // remove query string
+        let url = this.productServices.getCollectionHandle(event.url);
 
         if (url.length > 0) {
           this.checkHandle(url);
@@ -34,7 +40,6 @@ export class AppComponent {
         }
       }
     });
-
   }
 
   // check if url is present in collections

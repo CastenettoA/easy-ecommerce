@@ -17,8 +17,11 @@ export class CollectionsMenuComponent {
 
   constructor(private productServices: ProductService,
     private router: Router) {
+    this.getCollections();
+  }
 
-    // get collections
+  // get collections
+  getCollections() {
     this.productServices.collections$.subscribe((res) => {
       this.collections = res.collection_listings;
     });
@@ -26,7 +29,13 @@ export class CollectionsMenuComponent {
 
   // redirect to collection page
   goToCollection(handle:string) {
-    this.router.navigate([handle]);
+    this.router.navigate(['c/'+handle]);
+
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
 }

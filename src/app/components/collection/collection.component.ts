@@ -28,8 +28,7 @@ export class CollectionComponent {
     private route: ActivatedRoute,
     private router: Router) {
     // save url handle 
-    this.handle = this.router.url.split('/')[1]; // get current url handle
-    this.handle = this.handle.split('?')[0]; // remove query string
+    this.handle = this.productServices.getCollectionHandle(this.router.url);
   }
 
   ngOnInit() {
@@ -62,6 +61,19 @@ export class CollectionComponent {
           this.currentCollection = collection;
         }
       });
+
+      // go to 404 if collection not found
+      if (!this.currentCollection) {
+        this.router.navigate(['/not-found']);
+        // scroll to top
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+
+        return;
+      }
 
       // get products from current collection
       this.productServices.getProductsFromCollection(this.currentCollection?.collection_id).subscribe((res) => {
@@ -154,7 +166,8 @@ export class CollectionComponent {
 
   // redirect to product page
   goToProduct(product:Product) {
-    this.router.navigate([this.handle, product.handle], {
+
+    this.router.navigate(['c',this.handle, 'p',product.handle], {
       state: { product }
     });
 

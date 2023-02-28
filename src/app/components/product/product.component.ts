@@ -18,14 +18,17 @@ export class ProductComponent {
 
   constructor(private productServices: ProductService,
     private route: ActivatedRoute, private router: Router) {
+
+    this.onRouteChangeUpdateProduct();
+    this.loadProduct();
+  }
+
+  onRouteChangeUpdateProduct() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loadProduct();
       }
     })
-
-    this.loadProduct();
-
   }
 
   loadProduct() {
@@ -42,8 +45,7 @@ export class ProductComponent {
         }
       });
 
-      this.handle = this.router.url.split('/')[1]; // get current url handle
-      this.handle = this.handle.split('?')[0]; // remove query string
+      this.handle = this.productServices.getCollectionHandle(this.router.url);
 
       // find current collection from handle
       this.productServices.collections$.subscribe((res) => {
@@ -52,6 +54,19 @@ export class ProductComponent {
         let collection = collections.find((collection: any) => collection.handle === this.handle);
         if (collection) {
           this.getRelatedProducts(collection.collection_id);
+        } 
+        else {
+          // redirect to not found page
+          this.router.navigate(['/not-found']);
+
+          // scroll to top
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          });
+
+          return;
         }
       });
     }
@@ -71,7 +86,7 @@ export class ProductComponent {
 
   // redirect to product page
   goToProduct(product: Product) {
-    this.router.navigate([this.handle, product.handle], {
+    this.router.navigate(['c',this.handle, 'p',product.handle], {
       state: { product }
     });
 
