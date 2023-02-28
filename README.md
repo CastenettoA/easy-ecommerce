@@ -30,6 +30,13 @@ Link al sito pubblico: http://easy-c.netlify.com/
 * Il progetto github è collegato a **Netlify**. Ciò consente una pubblicazione automatica della SPA ad ogni push a questo link (http://easy-c.netlify.com/) e l'esecuzione automatica del test **LightHouse**
 ![LightHouse](https://i.ibb.co/hZ70JVz/Deploy-details-easy-c.png)
 
+### Sviluppi futuri
+Il progetto è stato sviluppato in 7 giorni. Nel caso riprendessi lo sviluppo della SPA partirei probabilmente da qui:
+1. Migliorare l'UI su Mobile
+2. Refactoring del codice: diminuire il codice duplicato, dividere maggiormente il codice in funzioni e componenti
+3. Utilizzare meno chiamate API e più Obsevables condivisi come stato dell'applicazione
+4. Ottimizzazione seo: meta tag description, alt nelle immagini.
+
 
 
 
